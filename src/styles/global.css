@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════
+   YOJANAFIND — GLOBAL STYLES
+   Theme: Indian Civic Editorial
+   Light, warm, ink-heavy, real product feel
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg:           #f5f0e8;
+  --bg2:          #ede8de;
+  --surface:      #ffffff;
+  --card:         #ffffff;
+  --border:       #d6cfc2;
+  --border-dark:  #b8af9f;
+  --ink:          #1a1714;
+  --ink2:         #3d3830;
+  --muted:        #7a7060;
+  --saffron:      #d4521a;
+  --saffron2:     #e8673a;
+  --saffron-dim:  rgba(212, 82, 26, 0.08);
+  --green:        #2d6a4f;
+  --green-dim:    rgba(45, 106, 79, 0.1);
+  --blue:         #1d4e89;
+  --blue-dim:     rgba(29, 78, 137, 0.08);
+  --gold:         #b5860d;
+  --success:      #2d6a4f;
+  --warning:      #b5860d;
+  --error:        #c0392b;
+  --font-serif:   'Instrument Serif', Georgia, serif;
+  --font-sans:    'Geist', 'Helvetica Neue', sans-serif;
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    14px;
+  --shadow-sm:    0 1px 3px rgba(26,23,20,0.08), 0 1px 2px rgba(26,23,20,0.05);
+  --shadow-md:    0 4px 16px rgba(26,23,20,0.1), 0 1px 4px rgba(26,23,20,0.06);
+  --shadow-card:  0 2px 8px rgba(26,23,20,0.07), 0 0 0 1px rgba(26,23,20,0.04);
+  --transition:   0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle paper texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+#root { position: relative; z-index: 1; }
+
+h1,h2,h3,h4 { line-height: 1.15; }
+a { color: var(--saffron); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: 0.75; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 3px; }
+::selection { background: rgba(212,82,26,0.15); color: var(--ink); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg2) 25%, var(--border) 50%, var(--bg2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}

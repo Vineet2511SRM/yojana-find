@@ -1,0 +1,111 @@
+.hero {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 56px 48px 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  animation: fadeUp 0.5s ease both;
+  border-bottom: 1px solid var(--border);
+}
+
+.left { flex: 1; }
+
+.kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--saffron);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin-bottom: 20px;
+}
+
+.heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+.body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.trust {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.trust span {
+  font-size: 0.78rem;
+  color: var(--green);
+  font-weight: 500;
+}
+
+/* Right stats panel */
+.right {
+  flex-shrink: 0;
+  width: 200px;
+  padding: 28px 24px;
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stat { padding: 4px 0 20px; }
+.stat:last-child { padding-bottom: 0; padding-top: 20px; }
+
+.statNum {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #f5f0e8;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.5;
+}
+
+.statDivider {
+  height: 1px;
+  background: rgba(245,240,232,0.12);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    flex-direction: column;
+    padding: 36px 20px 32px;
+    gap: 32px;
+  }
+  .right { width: 100%; flex-direction: row; gap: 0; }
+  .stat  { flex: 1; padding: 0 20px 0 0; }
+  .stat:last-child { padding: 0 0 0 20px; }
+  .statDivider { width: 1px; height: auto; }
+}

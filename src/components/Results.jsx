@@ -8,61 +8,62 @@ export default function Results({ status, schemes, error, profile, onReset }) {
 
   if (status === STATUS.LOADING) {
     return (
-      <div className={styles.wrap}>
+      <section className={styles.wrap}>
         <div className={styles.loadingHeader}>
           <div className={styles.spinnerLg} />
           <div>
-            <p className={styles.loadingTitle}>Matching schemes for your profile…</p>
-            <p className={styles.loadingSub}>Scanning central & {profile?.state} state databases</p>
+            <p className={styles.loadingTitle}>Matching schemes for your profile...</p>
+            <p className={styles.loadingSub}>Scanning central and {profile?.state} state databases</p>
           </div>
         </div>
         <div className={styles.skeletons}>
-          {[1,2,3,4].map(i => <div key={i} className={`${styles.skel} skeleton`} style={{animationDelay:`${i*0.1}s`}}/>)}
+          {[1, 2, 3, 4].map(i => <div key={i} className={`${styles.skel} skeleton`} style={{ animationDelay: `${i * 0.1}s` }} />)}
         </div>
-      </div>
+      </section>
     );
   }
 
   if (status === STATUS.ERROR) {
     return (
-      <div className={styles.wrap}>
+      <section className={styles.wrap}>
         <div className={styles.statusBox}>
           <p className={styles.errorTitle}>Could not fetch results</p>
           <p className={styles.errorMsg}>{error}</p>
           <button className={styles.retryBtn} onClick={onReset}>Try again</button>
         </div>
-      </div>
+      </section>
     );
   }
 
   if (status === STATUS.SUCCESS && !schemes.length) {
     return (
-      <div className={styles.wrap}>
+      <section className={styles.wrap}>
         <div className={styles.statusBox}>
           <p className={styles.errorTitle}>No matching schemes found</p>
           <p className={styles.errorMsg}>Try adjusting your categories or income range.</p>
           <button className={styles.retryBtn} onClick={onReset}>Search again</button>
         </div>
-      </div>
+      </section>
     );
   }
 
   const highCount = schemes.filter(s => s.match === "High").length;
 
   return (
-    <div className={styles.wrap}>
+    <section className={styles.wrap}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
+          <p className={styles.eyebrow}>Recommended matches</p>
           <h2 className={styles.title}>
             {schemes.length} schemes found
           </h2>
           <p className={styles.subtitle}>
-            for {profile?.gender?.toLowerCase()} · {profile?.age} · {profile?.state} · {profile?.caste}
+            for {profile?.gender?.toLowerCase()} / {profile?.age} / {profile?.state} / {profile?.caste}
           </p>
         </div>
         <div className={styles.headerRight}>
           <span className={styles.highCount}>{highCount} strong match</span>
-          <button className={styles.newSearchBtn} onClick={onReset}>← New search</button>
+          <button className={styles.newSearchBtn} onClick={onReset}>New search</button>
         </div>
       </div>
 
@@ -75,6 +76,6 @@ export default function Results({ status, schemes, error, profile, onReset }) {
         <a href="https://www.myscheme.gov.in/" target="_blank" rel="noreferrer">myscheme.gov.in</a>
         {" "}before applying.
       </div>
-    </div>
+    </section>
   );
 }

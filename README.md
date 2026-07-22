@@ -1,120 +1,103 @@
-# YojanaFind — AI Government Scheme Finder
+# YojanaFind — AI-Powered Government Scheme Finder
 
-Find Indian government welfare schemes you're eligible for, instantly.
+YojanaFind helps citizens discover Indian government welfare schemes they may be eligible for by combining a simple profile form with AI-based matching and official application links.
 
----
+## What it does
 
-## What It Does
+Users enter their profile details such as state, age, income, caste, and category. The app then suggests the most relevant central and state schemes, provides eligibility context, and shows step-by-step application guidance.
 
-Most Indian citizens don't know what government schemes they qualify for. YojanaFind fixes that — enter your state, age, income, caste, and category, and the AI returns the schemes most relevant to your profile with step-by-step application guides.
+## Key features
 
----
+- AI-based scheme matching using Groq
+- Central and state scheme discovery
+- Scheme cards with eligibility, benefits, and official links
+- Detailed modal with documents and application steps
+- Responsive UI built with React and CSS Modules
+- Simple local development workflow with Vite
 
-## Tech Stack
+## Tech stack
 
-| Layer      | Technology                          |
-|------------|-------------------------------------|
-| Frontend   | React 18, CSS Modules               |
-| AI         | Groq API (Llama 3.3 70B) — free     |
-| Data       | myscheme.gov.in, data.gov.in        |
-| Hosting    | Vercel / Netlify / GitHub Pages     |
+| Layer | Technology |
+| --- | --- |
+| Frontend | React 18, JSX, CSS Modules |
+| Build tool | Vite 5 |
+| Styling | CSS Modules + custom global styles |
+| AI integration | Groq API (Llama 3.3 70B) |
+| Data layer | Local JSON-like scheme data in JavaScript modules |
+| Deployment | Static frontend; can be hosted on Vercel, Netlify, or GitHub Pages |
 
----
+## Project structure
 
-## Project Structure
-
-```
+```text
 yojana-find/
 ├── public/
-│   └── index.html
+├── scripts/
 ├── src/
-│   ├── App.jsx
-│   ├── index.js
-│   ├── styles/
-│   │   └── global.css
+│   ├── components/
 │   ├── data/
-│   │   ├── schemes.js          # Scheme database + verified URLs
-│   │   └── howToApply.js       # Step-by-step application guides
 │   ├── hooks/
-│   │   └── useSchemes.js       # State management for AI fetch
+│   ├── styles/
 │   ├── utils/
-│   │   └── api.js              # Groq API integration
-│   └── components/
-│       ├── Navbar
-│       ├── Hero
-│       ├── StatsBar
-│       ├── SearchForm
-│       ├── SchemeCard
-│       ├── SchemeDetailModal   # Full scheme info + how to apply
-│       └── Results
-└── package.json
+│   ├── App.jsx
+│   └── index.jsx
+├── package.json
+└── README.md
 ```
 
----
+## Getting started
 
-## Getting Started
-
-### 1. Clone and install
+### 1. Install dependencies
 
 ```bash
-git clone https://github.com/Vineet2511SRM/yojana-find.git
-cd yojana-find
 npm install
 ```
 
-### 2. Get a free Groq API key
+### 2. Set up the Groq API key
 
-- Go to [console.groq.com](https://console.groq.com)
-- Sign up → API Keys → Create Key (free, no credit card)
+Create a file named `.env` in the project root and add:
 
-### 3. Set up environment
-
-Create a `.env` file in the project root:
-
-```
-REACT_APP_GROQ_KEY=gsk_your_key_here
+```env
+VITE_GROQ_KEY=your_groq_api_key_here
 ```
 
-### 4. Run
+### 3. Run locally
 
 ```bash
 npm start
 ```
 
-Opens at `http://localhost:3000`
+The app will open at <http://localhost:5173> (or the next available Vite port).
 
----
+### 4. Build for production
 
+```bash
+npm run build
+```
 
-## Features
+### 5. Preview production build
 
-- AI-matched schemes based on user profile (state, age, income, caste, category)
-- 16 central schemes + state-specific schemes for 6 states in the local database
-- Step-by-step application guide for each scheme (documents, steps, helpline, processing time)
-- Verified official government URLs — no dead links
-- Click any card to open full detail modal
-- Income bracket slider, category chips, responsive layout
-- Skeleton loading states
+```bash
+npm run preview
+```
 
----
+## Available scripts
 
-## Roadmap
+- `npm start` — starts the Vite dev server
+- `npm run build` — creates a production build
+- `npm run preview` — previews the built app locally
 
-- [ ] Node.js + Express backend to secure API key
-- [ ] MySQL scheme database with admin panel
-- [ ] Regional language support (Tamil, Hindi, Telugu)
-- [ ] More state-specific schemes
-- [ ] Offline PWA support for rural users with low connectivity
+## Data sources and content
 
----
+The app currently uses:
 
-## Data Sources
+- Official scheme portals such as myscheme.gov.in and ministry portals
+- Local curated scheme data in [src/data/schemes.js](src/data/schemes.js)
+- Application guidance in [src/data/howToApply.js](src/data/howToApply.js)
 
-- [myscheme.gov.in](https://www.myscheme.gov.in/) — Official government scheme portal
-- [data.gov.in](https://data.gov.in) — Open government data
-- Individual ministry portals for scheme details and URLs
+## Notes
 
----
+- The AI layer is currently connected client-side through the Groq API. For production, it is recommended to move API calls to a secure backend.
+- The project is intentionally lightweight and optimized for quick local demos or static deployment.
 
 ## License
 

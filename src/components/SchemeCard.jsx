@@ -22,11 +22,12 @@ export default function SchemeCard({ scheme, index }) {
 
   return (
     <>
-      <div
+      <article
         className={styles.card}
         style={{ animationDelay: `${index * 0.06}s` }}
         onClick={() => setModalOpen(true)}
-        role="button" tabIndex={0}
+        role="button"
+        tabIndex={0}
         onKeyDown={e => e.key === "Enter" && setModalOpen(true)}
       >
         <div className={styles.inner}>
@@ -50,11 +51,11 @@ export default function SchemeCard({ scheme, index }) {
               Apply
             </a>
             <button className={styles.detailsBtn} onClick={() => setModalOpen(true)} type="button">
-              Details →
+              Details
             </button>
           </div>
         </div>
-      </div>
+      </article>
 
       {modalOpen && (
         <SchemeDetailModal

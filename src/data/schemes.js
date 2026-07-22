@@ -9,6 +9,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Farmer", "Direct Benefit Transfer", "Central"],
     categories: ["Farmer"],
     applyUrl: "https://pmkisan.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Register on PM-KISAN portal", description: "Visit pmkisan.gov.in and click Farmers Corner. Start new farmer registration with Aadhaar, mobile number and bank account details." },
+      { stepNumber: 2, title: "Complete Aadhaar e-KYC", description: "Verify your identity using Aadhaar OTP. Ensure Aadhaar is linked to the bank account for direct benefit transfer." },
+      { stepNumber: 3, title: "Upload land records", description: "Submit farm documents such as 7/12 extract, Khasra/Khatauni and land ownership proof as required by the portal." },
+      { stepNumber: 4, title: "Confirm bank details", description: "Enter your account number, IFSC and passbook details accurately to receive DBT payments." },
+      { stepNumber: 5, title: "Track beneficiary status", description: "Use the beneficiary status lookup on pmkisan.gov.in to verify registration and payment release information." },
+    ],
     match: "High"
   },
   {
@@ -21,6 +28,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Housing", "Subsidy", "BPL", "Central"],
     categories: ["BPL / Below Poverty Line"],
     applyUrl: "https://pmaymis.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Choose the correct stream", description: "Decide whether you qualify under PMAY-U (urban) or PMAY-G (rural) before using the portal." },
+      { stepNumber: 2, title: "Register on PMAY portal", description: "Visit pmaymis.gov.in and register using Aadhaar, mobile number and valid email address." },
+      { stepNumber: 3, title: "Provide family and income details", description: "Enter your family size, income proof, residence type and house ownership details on the application form." },
+      { stepNumber: 4, title: "Upload documents", description: "Submit Aadhaar, income certificate, bank passbook, property papers and caste certificate as applicable." },
+      { stepNumber: 5, title: "Track your application", description: "Save your Application ID and monitor status on the portal or through the ULB/CSC office." },
+    ],
     match: "High"
   },
   {
@@ -33,6 +47,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Health", "Insurance", "BPL", "Central"],
     categories: ["BPL / Below Poverty Line", "Senior Citizen"],
     applyUrl: "https://pmjay.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Check eligibility", description: "Use the PMJAY portal or the Am I Eligible facility to verify if your family is covered under PM-JAY." },
+      { stepNumber: 2, title: "Visit an empanelled hospital or CSC", description: "Take your Aadhaar and ration card to a nearby empanelled hospital, CSC, or health centre for enrollment." },
+      { stepNumber: 3, title: "Complete biometric authentication", description: "Get biometric verification done on-site so your family can be added to the beneficiary list." },
+      { stepNumber: 4, title: "Download Ayushman card", description: "Use beneficiary.nha.gov.in to download the Ayushman Bharat e-card with your family details." },
+      { stepNumber: 5, title: "Use the scheme for treatment", description: "Present your card at empanelled hospitals for cashless medical treatment under PM-JAY." },
+    ],
     match: "High"
   },
   {
@@ -45,6 +66,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Education", "Scholarship", "Student", "Central"],
     categories: ["Student"],
     applyUrl: "https://scholarships.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Register on NSP portal", description: "Create an account on scholarships.gov.in using Aadhaar, mobile number and email address." },
+      { stepNumber: 2, title: "Login and select scheme", description: "Choose the relevant scholarship scheme from the NSP list and begin the application form." },
+      { stepNumber: 3, title: "Upload required documents", description: "Submit Aadhaar, income certificate, caste certificate, bank details and previous year marksheets." },
+      { stepNumber: 4, title: "Institute verification", description: "Your school or college verifies the application and forwards it to the district/state authority." },
+      { stepNumber: 5, title: "Track scholarship status", description: "Monitor your application status on NSP and download the sanction order once approved." },
+    ],
     match: "High"
   },
   {
@@ -57,6 +85,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Loan", "Entrepreneur", "Business", "Central"],
     categories: ["Entrepreneur / Self-employed"],
     applyUrl: "https://www.mudra.org.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Prepare a business plan", description: "Draft a simple business proposal explaining the loan purpose, investment need and expected cash flows." },
+      { stepNumber: 2, title: "Approach a bank or MFI", description: "Visit a public/private bank, RRB, NBFC or microfinance institution authorised for MUDRA loans." },
+      { stepNumber: 3, title: "Choose the loan category", description: "Select Shishu, Kishore or Tarun based on your funding requirement and business maturity." },
+      { stepNumber: 4, title: "Submit KYC and business documents", description: "Provide Aadhaar, PAN, bank statement, address proof and quotations for machinery or raw materials." },
+      { stepNumber: 5, title: "Receive loan disbursement", description: "Wait for lender approval, then receive the loan amount directly in your bank account." },
+    ],
     match: "High"
   },
   {
@@ -69,6 +104,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Employment", "Subsidy", "Business", "Central"],
     categories: ["Entrepreneur / Self-employed", "Unemployed Job Seeker"],
     applyUrl: "https://www.kviconline.gov.in/pmegpeportal/pmegpweb/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Register on KVIC portal", description: "Visit kviconline.gov.in and sign up as an applicant for PMEGP." },
+      { stepNumber: 2, title: "Fill the PMEGP form", description: "Provide personal details, project idea, investment amount and business location." },
+      { stepNumber: 3, title: "Submit project report", description: "Attach a detailed DPR, Aadhaar, income proof, educational certificates and proof of address." },
+      { stepNumber: 4, title: "Attend project evaluation", description: "Participate in the KVIC/KVIB appraisal and bank discussion for approval." },
+      { stepNumber: 5, title: "Receive subsidy and loan", description: "After sanction, the bank disburses the loan and the subsidy is credited to your loan account." },
+    ],
     match: "Medium"
   },
   {
@@ -81,6 +123,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["LPG", "Woman", "BPL", "Central"],
     categories: ["Woman", "BPL / Below Poverty Line"],
     applyUrl: "https://pmuy.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Visit your LPG distributor", description: "Go to the nearest authorised LPG distributor office with your Aadhaar and BPL document." },
+      { stepNumber: 2, title: "Fill the PMUY application form", description: "Complete the LPG connection application-cum-KYC form with your personal and bank details." },
+      { stepNumber: 3, title: "Submit supporting documents", description: "Provide Aadhaar, BPL certificate, address proof and bank details for DBT." },
+      { stepNumber: 4, title: "Wait for verification", description: "The distributor verifies your details and forwards the connection request to the oil company." },
+      { stepNumber: 5, title: "Receive connection and refill", description: "Once approved, your free LPG connection and first refill are issued to your household." },
+    ],
     match: "High"
   },
   {
@@ -93,6 +142,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Insurance", "Low Premium", "Central"],
     categories: ["Farmer", "BPL / Below Poverty Line"],
     applyUrl: "https://www.jansuraksha.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Visit your bank", description: "Visit your bank branch or use net banking/mobile banking app." },
+      { stepNumber: 2, title: "Fill enrollment form", description: "Fill the PMSBY enrollment-cum-auto debit form with your details." },
+      { stepNumber: 3, title: "Authorize auto-debit", description: "Give consent for ₹20/year to be auto-debited from your savings account every June." },
+      { stepNumber: 4, title: "Confirm policy issuance", description: "Collect the acknowledgment slip or policy copy after the bank processes the enrollment." },
+      { stepNumber: 5, title: "Keep proof for claims", description: "Retain the receipt and policy details for future accident claim filing." },
+    ],
     match: "High"
   },
   {
@@ -105,6 +161,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Life Insurance", "Low Premium", "Central"],
     categories: ["Farmer", "BPL / Below Poverty Line"],
     applyUrl: "https://www.jansuraksha.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Visit your bank", description: "Visit bank branch or use net/mobile banking to enroll in PMJJBY." },
+      { stepNumber: 2, title: "Complete the enrollment form", description: "Fill the enrollment-cum-auto debit mandate form with nominee details." },
+      { stepNumber: 3, title: "Authorize annual debit", description: "Give consent for ₹436/year auto-debit from your account." },
+      { stepNumber: 4, title: "Get policy activated", description: "Collect the policy confirmation and note the coverage start date." },
+      { stepNumber: 5, title: "Retain claim documents", description: "Keep the policy copy, bank receipt and nominee information handy for claims." },
+    ],
     match: "Medium"
   },
   {
@@ -117,6 +180,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Maternity", "Woman", "Cash Transfer", "Central"],
     categories: ["Pregnant / New Mother", "Woman"],
     applyUrl: "https://pmmvy.wcd.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Register pregnancy", description: "Register your pregnancy at the nearest Anganwadi Centre or government health facility." },
+      { stepNumber: 2, title: "Submit PMMVY form", description: "Submit Form 1-A at the Anganwadi with Aadhaar and MCP card details." },
+      { stepNumber: 3, title: "Complete antenatal visits", description: "Attend required checkups and submit health reports as required by the scheme." },
+      { stepNumber: 4, title: "Submit childbirth proof", description: "Provide the child birth certificate or hospital delivery certificate after delivery." },
+      { stepNumber: 5, title: "Receive installments", description: "Receive the payment installments directly into your bank account after each milestone." },
+    ],
     match: "High"
   },
   {
@@ -129,6 +199,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Skill", "Youth", "Employment", "Central"],
     categories: ["Student", "Unemployed Job Seeker"],
     applyUrl: "https://www.apprenticeshipindia.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Register on portal", description: "Go to apprenticeshipindia.gov.in and register as an apprentice candidate." },
+      { stepNumber: 2, title: "Search for openings", description: "Browse apprenticeship opportunities by trade, location, and employer." },
+      { stepNumber: 3, title: "Apply to employer", description: "Submit your application to the employer through the portal." },
+      { stepNumber: 4, title: "Sign the apprenticeship contract", description: "If selected, sign the contract with the employer and upload required documents." },
+      { stepNumber: 5, title: "Begin training and stipend", description: "Start the apprenticeship and receive monthly stipend under NAPS." },
+    ],
     match: "High"
   },
   {
@@ -141,6 +218,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Skill", "Youth", "Certification", "Central"],
     categories: ["Student", "Unemployed Job Seeker"],
     applyUrl: "https://www.skillindiadigital.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Find a training centre", description: "Visit skillindiadigital.gov.in and locate a nearby PMKVY training centre." },
+      { stepNumber: 2, title: "Register online", description: "Register on Skill India Digital Hub with Aadhaar and select your preferred skill course." },
+      { stepNumber: 3, title: "Enrol in the course", description: "Complete the course enrolment formalities at the training centre." },
+      { stepNumber: 4, title: "Complete training", description: "Attend the training program and finish the required hours and assessments." },
+      { stepNumber: 5, title: "Get certification", description: "Pass the assessment, obtain the certificate, and claim any rewards." },
+    ],
     match: "High"
   },
   {
@@ -153,6 +237,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Disability", "Assistive Devices", "Central"],
     categories: ["Person with Disability"],
     applyUrl: "https://www.disabilityaffairs.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Get disability certificate", description: "Obtain a disability certificate from a government hospital confirming ≥40% disability." },
+      { stepNumber: 2, title: "Find ADIP camp", description: "Locate a nearby ADIP/Alimco camp or district office for assistive device distribution." },
+      { stepNumber: 3, title: "Register at the camp", description: "Submit documents and register at the assistive device camp." },
+      { stepNumber: 4, title: "Receive device", description: "Get the prescribed assistive device free or at subsidized cost." },
+      { stepNumber: 5, title: "Use after-care services", description: "Access repair and maintenance support from government service centres." },
+    ],
     match: "High"
   },
   {
@@ -165,6 +256,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Pension", "Senior", "BPL", "Central"],
     categories: ["Senior Citizen"],
     applyUrl: "https://nsap.nic.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Collect the application form", description: "Get the IGNOAPS form from your Gram Panchayat or Ward Office." },
+      { stepNumber: 2, title: "Fill details", description: "Complete the form with Aadhaar, age proof, BPL status and bank account details." },
+      { stepNumber: 3, title: "Submit documents", description: "Submit the form along with Aadhaar, age proof, BPL card and bank passbook copy." },
+      { stepNumber: 4, title: "Verification", description: "Local officials verify your application and confirm your eligibility." },
+      { stepNumber: 5, title: "Receive pension", description: "Monthly pension is credited to your bank account after approval." },
+    ],
     match: "High"
   },
   {
@@ -177,6 +275,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Skill", "Rural", "Employment", "Central"],
     categories: ["Unemployed Job Seeker", "Student"],
     applyUrl: "https://ddugky.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Contact local project office", description: "Visit your nearest DRDA or Block Development Office for DDU-GKY registration." },
+      { stepNumber: 2, title: "Check eligibility", description: "Confirm you are rural youth aged 15–35 from a poor household." },
+      { stepNumber: 3, title: "Register at approved PIA", description: "Register at an approved Project Implementing Agency for residential skill training." },
+      { stepNumber: 4, title: "Complete training", description: "Attend the residential training programme with meals and accommodation provided." },
+      { stepNumber: 5, title: "Get placement", description: "PIA assists you with formal job placement after training." },
+    ],
     match: "High"
   },
   {
@@ -189,6 +294,13 @@ export const CENTRAL_SCHEMES = [
     tags: ["Startup", "Funding", "Entrepreneur", "Central"],
     categories: ["Entrepreneur / Self-employed"],
     applyUrl: "https://seedfund.startupindia.gov.in/",
+    applicationSteps: [
+      { stepNumber: 1, title: "Get DPIIT recognition", description: "Register your startup on startupindia.gov.in and secure DPIIT recognition." },
+      { stepNumber: 2, title: "Find an incubator", description: "Choose an empanelled incubator from seedfund.startupindia.gov.in." },
+      { stepNumber: 3, title: "Apply to incubator", description: "Submit your project report, team profile and financial plan to the incubator." },
+      { stepNumber: 4, title: "Undergo evaluation", description: "Incubator reviews your application and recommends it for funding." },
+      { stepNumber: 5, title: "Receive funding", description: "Approved startups receive grant support for proof of concept or market entry." },
+    ],
     match: "Medium"
   },
 ];
@@ -216,7 +328,7 @@ export const STATE_SCHEMES = {
       eligibility: "SC/ST students in TN colleges",
       tags: ["Education", "SC/ST", "Tamil Nadu"],
       categories: ["Student"],
-      applyUrl: "https://www.adwelfare.tn.gov.in/",
+      applyUrl: "https://scholarships.gov.in/",
       match: "High"
     },
   ],

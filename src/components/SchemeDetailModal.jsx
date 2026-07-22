@@ -1,13 +1,28 @@
 import React, { useEffect } from "react";
 import { HOW_TO_APPLY, DEFAULT_STEPS } from "../data/howToApply";
+import { CENTRAL_SCHEMES } from "../data/schemes";
 import styles from "./SchemeDetailModal.module.css";
 
 export default function SchemeDetailModal({ scheme, applyUrl, onClose }) {
-  const guideId = scheme.id || "";
-  const guide   = HOW_TO_APPLY[guideId] || null;
-  const steps   = guide?.steps || DEFAULT_STEPS;
+  // Try to enrich AI-provided scheme objects with known central scheme data
+  const findCentralMatch = (name) => {
+    if (!name) return null;
+    const lower = name.toLowerCase();
+    return CENTRAL_SCHEMES.find(c => {
+      if (!c || !c.name) return false;
+      const n = c.name.toLowerCase();
+      if (n.includes(lower) || lower.includes(n)) return true;
+      if (c.id && lower.includes(c.id.toLowerCase())) return true;
+      if (c.tags && c.tags.some(t => lower.includes(String(t).toLowerCase()))) return true;
+      return false;
+    }) || null;
+  };
 
-  // Close on Escape key
+  const centralMatch = findCentralMatch(scheme.name || scheme.title || "");
+  const guideId = scheme.id || centralMatch?.id || "";
+  const guide = HOW_TO_APPLY[guideId] || null;
+  const steps = scheme.applicationSteps || centralMatch?.applicationSteps || guide?.steps || DEFAULT_STEPS;
+
   useEffect(() => {
     const handler = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
@@ -23,8 +38,6 @@ export default function SchemeDetailModal({ scheme, applyUrl, onClose }) {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-
-        {/* Header */}
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <span className={`${styles.matchPill} ${isHigh ? styles.high : styles.med}`}>
@@ -32,26 +45,23 @@ export default function SchemeDetailModal({ scheme, applyUrl, onClose }) {
             </span>
             <p className={styles.ministry}>{scheme.ministry}</p>
           </div>
-          <button className={styles.closeBtn} onClick={onClose} type="button">✕</button>
+          <button className={styles.closeBtn} onClick={onClose} type="button" aria-label="Close details">x</button>
         </div>
 
         <div className={styles.body}>
           <h2 className={styles.title}>{scheme.name}</h2>
           <p className={styles.desc}>{scheme.description}</p>
 
-          {/* Benefit highlight */}
           <div className={styles.benefitBox}>
             <span className={styles.benefitLabel}>What you get</span>
             <span className={styles.benefitVal}>{scheme.benefits}</span>
           </div>
 
-          {/* Eligibility */}
           <div className={styles.eligBox}>
-            <span className={styles.eligLabel}>✓ Eligibility</span>
+            <span className={styles.eligLabel}>Eligibility</span>
             <span className={styles.eligVal}>{scheme.eligibility}</span>
           </div>
 
-          {/* Documents required */}
           {guide?.documents && (
             <div className={styles.section}>
               <h3 className={styles.sectionTitle}>Documents Required</h3>
@@ -66,23 +76,21 @@ export default function SchemeDetailModal({ scheme, applyUrl, onClose }) {
             </div>
           )}
 
-          {/* How to apply steps */}
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>How to Apply</h3>
             <div className={styles.steps}>
               {steps.map((s, i) => (
                 <div key={i} className={styles.step}>
-                  <div className={styles.stepNum}>{i + 1}</div>
+                  <div className={styles.stepNum}>{s.stepNumber ?? i + 1}</div>
                   <div className={styles.stepContent}>
-                    <div className={styles.stepTitle}>{s.step}</div>
-                    <div className={styles.stepDetail}>{s.detail}</div>
+                    <div className={styles.stepTitle}>{s.step || s.title}</div>
+                    <div className={styles.stepDetail}>{s.detail || s.description}</div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Helpline + processing time */}
           {guide && (
             <div className={styles.infoRow}>
               {guide.helpline && (
@@ -101,16 +109,14 @@ export default function SchemeDetailModal({ scheme, applyUrl, onClose }) {
           )}
         </div>
 
-        {/* Footer */}
         <div className={styles.footer}>
           <span className={styles.footerNote}>
-            Verify details at the official portal before applying
+            Verify details at the official portal before applying.
           </span>
           <a href={applyUrl} target="_blank" rel="noreferrer" className={styles.applyBtn}>
-            Apply on Official Site →
+            Apply on Official Site
           </a>
         </div>
-
       </div>
     </div>
   );

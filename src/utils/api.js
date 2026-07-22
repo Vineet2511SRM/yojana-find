@@ -20,10 +20,10 @@ Return 6 real active Indian government schemes most relevant to this profile.`;
 }
 
 export async function fetchSchemesFromAI(profile) {
-  const apiKey = process.env.REACT_APP_GROQ_KEY;
+  const apiKey = import.meta.env.VITE_GROQ_KEY;
 
   if (!apiKey) {
-    throw new Error("Groq API key missing. Add REACT_APP_GROQ_KEY to your .env file.");
+    throw new Error("Groq API key missing. Add VITE_GROQ_KEY to your .env file.");
   }
 
   const response = await fetch(GROQ_API, {
@@ -53,7 +53,7 @@ export async function fetchSchemesFromAI(profile) {
   if (!response.ok) {
     const err = await response.json().catch(() => ({}));
     const msg = err?.error?.message || `HTTP ${response.status}`;
-    if (response.status === 401) throw new Error("Invalid Groq API key. Check your .env file.");
+    if (response.status === 401) throw new Error("Invalid Groq API key. Check VITE_GROQ_KEY in your .env file.");
     if (response.status === 429) throw new Error("Rate limit hit. Wait a moment and retry.");
     throw new Error(`Groq API Error: ${msg}`);
   }

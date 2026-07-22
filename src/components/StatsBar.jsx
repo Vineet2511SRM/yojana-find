@@ -10,10 +10,12 @@ export default function StatsBar() {
   return (
     <div className={styles.bar}>
       <div className={styles.label}>Active schemes indexed:</div>
-      <div className={styles.ticker}>
-        {[...SCHEMES, ...SCHEMES].map((s, i) => (
-          <span key={i} className={styles.item}>{s}</span>
-        ))}
+      <div className={styles.tickerMask}>
+        <div className={styles.ticker}>
+          {[...SCHEMES, ...SCHEMES].map((s, i) => (
+            <span key={i} className={styles.item}>{s}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

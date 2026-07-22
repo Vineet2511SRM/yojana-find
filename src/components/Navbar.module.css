@@ -1,52 +1,135 @@
 .nav {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px;
-  height: 56px;
-  background: rgba(245,240,232,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  padding: 0 clamp(24px, 5vw, 72px);
+  border-bottom: 1px solid rgba(163, 177, 198, 0.72);
+  background: rgba(224, 229, 236, 0.88);
+  backdrop-filter: blur(18px);
 }
 
 .logo {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 14px;
   color: var(--ink);
-  letter-spacing: -0.01em;
-  display: flex; align-items: center; gap: 8px;
+  font-size: 1.28rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 #fff;
 }
 
 .logoMark {
-  width: 22px; height: 22px;
-  background: var(--saffron);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; color: white; font-weight: 600;
-  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 11px;
+  background: var(--saffron);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow-accent);
 }
 
 .right {
-  display: flex; align-items: center; gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-recessed);
+}
+
+.status span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--green);
+  box-shadow: 0 0 10px 2px rgba(22, 163, 74, 0.65);
+  animation: pulseLed 2s infinite;
+}
+
+.navLink,
+.govBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .navLink {
-  font-size: 0.8rem; color: var(--muted);
-  font-weight: 500; letter-spacing: 0.01em;
-  transition: color var(--transition);
+  padding: 0 14px;
+  color: var(--muted);
+  box-shadow: var(--shadow-card);
 }
-.navLink:hover { color: var(--ink); opacity: 1; }
+
+.navLink:hover {
+  color: var(--saffron);
+  transform: translateY(-1px);
+}
+
+.navLink:active {
+  box-shadow: var(--shadow-pressed);
+  transform: translateY(2px);
+}
+
+.navLink:focus-visible,
+.govBadge:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 4px;
+}
 
 .govBadge {
-  font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--green); background: var(--green-dim);
-  border: 1px solid rgba(45,106,79,0.2);
-  border-radius: 4px; padding: 3px 8px;
+  padding: 0 13px;
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  background: var(--green-dim);
+  color: #17613c;
+  box-shadow: var(--shadow-card);
 }
 
-@media (max-width: 600px) {
-  .nav { padding: 0 16px; }
-  .navLink { display: none; }
+.govBadge:hover {
+  color: #17613c;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 820px) {
+  .nav {
+    min-height: 70px;
+    padding: 0 20px;
+  }
+
+  .status,
+  .navLink {
+    display: none;
+  }
 }

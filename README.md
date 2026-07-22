@@ -1,32 +1,26 @@
 # YojanaFind — AI-Powered Government Scheme Finder
 
-YojanaFind helps citizens discover Indian government welfare schemes they may be eligible for by combining a simple profile form with AI-based matching and official application links.
+YojanaFind helps Indian citizens discover government welfare schemes they're eligible for. Enter your profile details and get AI-matched schemes with eligibility info and official application links.
 
-## What it does
+## Features
 
-Users enter their profile details such as state, age, income, caste, and category. The app then suggests the most relevant central and state schemes, provides eligibility context, and shows step-by-step application guidance.
-
-## Key features
-
-- AI-based scheme matching using Groq
+- AI-based scheme matching using Groq (Llama 3.3 70B)
 - Central and state scheme discovery
 - Scheme cards with eligibility, benefits, and official links
-- Detailed modal with documents and application steps
+- Detailed modal with required documents and application steps
 - Responsive UI built with React and CSS Modules
-- Simple local development workflow with Vite
 
-## Tech stack
+## Tech Stack
 
 | Layer | Technology |
 | --- | --- |
 | Frontend | React 18, JSX, CSS Modules |
 | Build tool | Vite 5 |
-| Styling | CSS Modules + custom global styles |
-| AI integration | Groq API (Llama 3.3 70B) |
-| Data layer | Local JSON-like scheme data in JavaScript modules |
-| Deployment | Static frontend; can be hosted on Vercel, Netlify, or GitHub Pages |
+| AI | Groq API (Llama 3.3 70B) |
+| Backend | Node.js + Express (proxy for Groq API) |
+| Deployment | Vercel / Netlify / GitHub Pages |
 
-## Project structure
+## Project Structure
 
 ```text
 yojana-find/
@@ -40,25 +34,30 @@ yojana-find/
 │   ├── utils/
 │   ├── App.jsx
 │   └── index.jsx
+├── server.js
 ├── package.json
-└── README.md
+└── .env
 ```
 
-## Getting started
+## Getting Started
 
-### 1. Install dependencies
+### 1. Clone and install
 
 ```bash
+git clone https://github.com/Vineet2511SRM/yojana-find.git
+cd yojana-find
 npm install
 ```
 
-### 2. Set up the Groq API key
+### 2. Set up environment variables
 
-Create a file named `.env` in the project root and add:
+Create a `.env` file in the project root:
 
 ```env
-VITE_GROQ_KEY=your_groq_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
+
+Get your free API key at [console.groq.com](https://console.groq.com).
 
 ### 3. Run locally
 
@@ -66,7 +65,7 @@ VITE_GROQ_KEY=your_groq_api_key_here
 npm start
 ```
 
-The app will open at <http://localhost:5173> (or the next available Vite port).
+App runs at `http://localhost:5173`
 
 ### 4. Build for production
 
@@ -74,30 +73,19 @@ The app will open at <http://localhost:5173> (or the next available Vite port).
 npm run build
 ```
 
-### 5. Preview production build
+## Available Scripts
 
-```bash
-npm run preview
-```
+| Script | Description |
+| --- | --- |
+| `npm start` | Start Vite dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build locally |
 
-## Available scripts
+## Data Sources
 
-- `npm start` — starts the Vite dev server
-- `npm run build` — creates a production build
-- `npm run preview` — previews the built app locally
-
-## Data sources and content
-
-The app currently uses:
-
-- Official scheme portals such as myscheme.gov.in and ministry portals
-- Local curated scheme data in [src/data/schemes.js](src/data/schemes.js)
-- Application guidance in [src/data/howToApply.js](src/data/howToApply.js)
-
-## Notes
-
-- The AI layer is currently connected client-side through the Groq API. For production, it is recommended to move API calls to a secure backend.
-- The project is intentionally lightweight and optimized for quick local demos or static deployment.
+- Official portals: myscheme.gov.in and ministry portals
+- Curated scheme data: `src/data/schemes.js`
+- Application guidance: `src/data/howToApply.js`
 
 ## License
 

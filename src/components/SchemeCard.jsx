@@ -5,14 +5,33 @@ import styles from "./SchemeCard.module.css";
 
 function resolveUrl(aiUrl, schemeName) {
   const name = (schemeName || "").toLowerCase();
+
+  // 1. Check known keywords for direct verified portal URLs
   for (const [keyword, url] of Object.entries(KNOWN_URLS)) {
-    if (name.includes(keyword)) return url;
+    if (name.includes(keyword.toLowerCase())) return url;
   }
-  if (aiUrl && typeof aiUrl === "string" && aiUrl.startsWith("https://") &&
-    !aiUrl.includes("undefined") && !aiUrl.includes("example.com")) {
-    return aiUrl;
+
+  // 2. Validate aiUrl: only trust if it's a valid URL with verified official domain suffix (.gov.in, .nic.in)
+  if (aiUrl && typeof aiUrl === "string" && aiUrl.startsWith("https://")) {
+    try {
+      const parsed = new URL(aiUrl);
+      const host = parsed.hostname.toLowerCase();
+      if ((host.endsWith(".gov.in") || host.endsWith(".nic.in")) &&
+          !aiUrl.includes("example.com") &&
+          !aiUrl.includes("undefined")) {
+        return aiUrl;
+      }
+    } catch {
+      // Invalid URL format
+    }
   }
-  return "https://www.myscheme.gov.in/";
+
+  // 3. Smart fallback: search official myScheme portal for this exact scheme name
+  // Ensures every scheme button works 100% of the time and lands on official govt search results!
+  const cleanName = (schemeName || "").trim();
+  return cleanName
+    ? `https://www.myscheme.gov.in/search?search=${encodeURIComponent(cleanName)}`
+    : "https://www.myscheme.gov.in/";
 }
 
 export default function SchemeCard({ scheme, index }) {

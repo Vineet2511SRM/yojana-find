@@ -19,12 +19,22 @@ Citizen profile:
 - Income: ${profile.income}
 - Categories: ${profile.categories.join(', ')}
 
-Return ONLY a raw JSON array. No markdown. No explanation. Start directly with [.
-
-Each object must have exactly these keys:
-name, ministry, description, benefits, eligibility, tags (array of 3 strings), match ("High" or "Medium"), applyUrl
-
-Return 6 real active Indian government schemes most relevant to this profile.`;
+Provide 6 real, active Indian government schemes most relevant to this profile.
+Return a valid JSON object matching this exact schema:
+{
+  "schemes": [
+    {
+      "name": "Scheme Name",
+      "ministry": "Ministry Name",
+      "description": "Short description of the scheme",
+      "benefits": "Key benefits provided",
+      "eligibility": "Eligibility criteria",
+      "tags": ["Tag1", "Tag2", "Tag3"],
+      "match": "High",
+      "applyUrl": "https://example.gov.in"
+    }
+  ]
+}`;
 }
 
 app.get('/health', (_req, res) => {
@@ -39,6 +49,20 @@ const GROQ_MODELS = [
     'llama-3.3-70b-versatile',
     'llama-3.1-8b-instant',
 ].filter(Boolean);
+
+function cleanAndParseJSON(rawText) {
+    let text = rawText.trim();
+    if (text.startsWith('```json')) {
+        text = text.slice(7);
+    } else if (text.startsWith('```')) {
+        text = text.slice(3);
+    }
+    if (text.endsWith('```')) {
+        text = text.slice(0, -3);
+    }
+    text = text.trim();
+    return JSON.parse(text);
+}
 
 app.post('/api/schemes', async (req, res) => {
     const apiKey = process.env.GROQ_API_KEY || process.env.VITE_GROQ_KEY;
@@ -66,7 +90,7 @@ app.post('/api/schemes', async (req, res) => {
                     messages: [
                         {
                             role: 'system',
-                            content: 'You are a helpful assistant that returns only valid JSON arrays. Always wrap your response in {"schemes": [...]}',
+                            content: 'You are a helpful assistant that returns only valid JSON matching {"schemes": [...]}.',
                         },
                         {
                             role: 'user',
@@ -81,8 +105,14 @@ app.post('/api/schemes', async (req, res) => {
                 const msg = err?.error?.message || `HTTP ${response.status}`;
                 lastErrorMsg = msg;
                 lastStatusCode = response.status;
-                // If model doesn't exist or no access, try next model in fallback list
-                if (response.status === 404 || msg.toLowerCase().includes('model') || msg.toLowerCase().includes('not exist') || msg.toLowerCase().includes('access')) {
+                // If model doesn't exist, no access, or JSON validation fails with that model, try next fallback model
+                if (
+                    response.status === 404 ||
+                    msg.toLowerCase().includes('model') ||
+                    msg.toLowerCase().includes('not exist') ||
+                    msg.toLowerCase().includes('access') ||
+                    msg.toLowerCase().includes('validate json')
+                ) {
                     console.warn(`Model ${model} failed with: "${msg}". Trying next fallback model...`);
                     continue;
                 }
@@ -99,8 +129,8 @@ app.post('/api/schemes', async (req, res) => {
 
             let schemes;
             try {
-                const parsed = JSON.parse(rawText);
-                schemes = parsed.schemes || parsed;
+                const parsed = cleanAndParseJSON(rawText);
+                schemes = parsed.schemes || (Array.isArray(parsed) ? parsed : null);
             } catch {
                 lastErrorMsg = 'Could not parse response from Groq.';
                 continue;

@@ -46,9 +46,9 @@ The app is organized around a simple frontend flow:
 
 - Groq API
   - The app calls the Groq chat completion endpoint to get a list of relevant schemes.
-  - The current model used is Llama 3.3 70B.
+  - The primary models used are `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, or `qwen/qwen3.6-27b`.
 - Environment-based API key
-  - The key is read from the Vite environment variable `VITE_GROQ_KEY`.
+  - The key is read from the environment variable `GROQ_API_KEY` (or `VITE_GROQ_KEY`).
 
 ### Data layer
 

@@ -4,7 +4,7 @@ YojanaFind helps Indian citizens discover government welfare schemes they're eli
 
 ## Features
 
-- AI-based scheme matching using Groq (Llama 3.3 70B)
+- AI-based scheme matching using Groq (OpenAI GPT-OSS / Qwen)
 - Central and state scheme discovery
 - Scheme cards with eligibility, benefits, and official links
 - Detailed modal with required documents and application steps
@@ -16,7 +16,7 @@ YojanaFind helps Indian citizens discover government welfare schemes they're eli
 | --- | --- |
 | Frontend | React 18, JSX, CSS Modules |
 | Build tool | Vite 5 |
-| AI | Groq API (Llama 3.3 70B) |
+| AI | Groq API (openai/gpt-oss-120b, openai/gpt-oss-20b) |
 | Backend | Node.js + Express (proxy for Groq API) |
 | Deployment | Vercel / Netlify / GitHub Pages |
 
